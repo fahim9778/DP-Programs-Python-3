@@ -89,5 +89,5 @@ if __name__ == '__main__':
     if minCoins >= infinity:
         print("\nImpossible to fill")
     else:
-        print(f'\nMinimum coins required is = {minCoins}')
+        print(f'\nMinimum coins required = {minCoins}')
         print(f'Possible Coin Values : {coinsToTake}')
