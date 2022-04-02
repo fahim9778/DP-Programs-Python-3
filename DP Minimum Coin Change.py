@@ -26,6 +26,22 @@ def print_dp_table(dp_table, amount, coins):
         print()
 
 
+def which_coins(dp_table, amount, coins):
+    """ Function that calculates which coins can be taken to make the minimum change """
+    total_coins = len(coins)
+    row = total_coins
+    col = amount
+    coins_to_take = []
+
+    while (col > 0) and (row > 0):
+        if dp_table[row][col] != dp_table[row - 1][col]:
+            coins_to_take.append(coins[row - 1])
+            col = col - coins[row - 1]
+        else:
+            row = row - 1
+    return coins_to_take
+
+
 def dp_minimum_coin_change(amount_to_fill, coins):
     """ Function to calculate the DP Table values """
     total_coins = len(coins)
@@ -58,22 +74,6 @@ def dp_minimum_coin_change(amount_to_fill, coins):
 
     # Returning multiple values to the calling function
     return [dp_table[total_coins][amount_to_fill], which_coins(dp_table, amount_to_fill, coins)]
-
-
-def which_coins(dp_table, amount, coins):
-    """ Function that calculates which coins can be taken to make the minimum change """
-    total_coins = len(coins)
-    row = total_coins
-    col = amount
-    coins_to_take = []
-
-    while (col > 0) and (row > 0):
-        if dp_table[row][col] != dp_table[row - 1][col]:
-            coins_to_take.append(coins[row - 1])
-            col = col - coins[row - 1]
-        else:
-            row = row - 1
-    return coins_to_take
 
 
 if __name__ == '__main__':
